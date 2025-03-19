@@ -1,4 +1,4 @@
-package br.com.gustavoantunes.jiu_jitsu_diary;
+package br.com.gustavoantunes.jiujitsudiary;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

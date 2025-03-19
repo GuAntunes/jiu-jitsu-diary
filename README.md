@@ -45,6 +45,39 @@ The system allows each user to monitor physical progress, set goals, and gain in
 - Maven
 - PostgreSQL
 
+# Hexagonal Architecture
+
+**Hexagonal Architecture** aims to isolate the **domain** of the application from external dependencies (such as infrastructure, frameworks, and databases), allowing the system to be more flexible, testable, and maintainable with business logic independent of technologies.
+
+## Layer Structure
+
+### 1. **Domain (`domain`)**
+- **Defines the ports (interfaces)** that external layers (such as application and infrastructure) should implement.
+- Contains **business rules** and domain models. It does not depend on any external technology.
+- **Types of Ports:**
+    - **Inbound Ports (Driving Ports):** Interfaces representing use cases.
+    - **Outbound Ports (Driven Ports):** Interfaces for interaction with external systems, such as repositories or external services.
+
+### 2. **Application Layer (`application`)**
+- **Interacts with the domain** via the **inbound ports** defined in the domain.
+- **Orchestrates the use cases** but does not contain business logic.
+- **Calls outbound ports** to interact with infrastructure, such as saving data or making calls to external services.
+
+### 3. **Infrastructure Layer (`infrastructure`)**
+- **Implements outbound ports** defined by the domain.
+- Contains the implementation of **adapters**, such as database repositories, external services, and other dependencies.
+- **Does not directly interact with the application layer**, ensuring business logic is independent of external technologies.
+
+## Interaction Flow:
+1. The **Application Layer** calls an **inbound port** (use case).
+2. The **Domain** executes business logic and interacts with **outbound ports**.
+3. The **Infrastructure** layer implements the outbound ports and interacts with external systems (e.g., databases, APIs).
+
+## Benefits:
+- **Decoupling**: The domain does not depend on external databases, frameworks, or libraries.
+- **Testability**: Business logic can be easily tested in isolation without dependencies on infrastructure.
+- **Flexibility**: External technologies (such as databases or frameworks) can be swapped without impacting the core business logic.
+
 ### **Run Locally** *TODO*
 ```bash
 # Clone the repository

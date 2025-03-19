@@ -1,4 +1,4 @@
-package br.com.gustavoantunes.jiu_jitsu_diary;
+package br.com.gustavoantunes.jiujitsudiary.infrastructure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
