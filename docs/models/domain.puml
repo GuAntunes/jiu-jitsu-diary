@@ -1,4 +1,66 @@
 @startuml
-Alice -> Bob: Hello!
-Bob -> Alice: Hi!
+
+package "User Aggregate" {
+
+    class User {
+        - UUID id
+        - String name
+        - String email
+        - String password
+        - LocalDate birthDate
+        - UserType userType
+        - Belt currentlyBelt
+        - List<TrainingSession> trainingSessions
+    }
+
+    class Belt {
+        - BeltRank beltRank
+        - Grade grade
+    }
+
+    enum UserType {
+        ADMIN, ATHLETE, TEACHER
+    }
+
+    enum BeltRank {
+        WHITE, BLUE, PURPLE, BROWN, BLACK, RED
+    }
+
+    enum Grade {
+        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT
+    }
+}
+
+package "Training Aggregate" {
+
+    class TrainingSession {
+        - UUID id
+        - LocalDateTime dateTime
+        - TrainingType type
+        - List<Technique> techniques
+    }
+
+    enum TrainingType {
+        DRILLING, TECHNIQUE, SPARRING
+    }
+}
+package "Technique Aggregate" {
+
+    class Technique {
+        - UUID id
+        - String name
+        - String description
+        - MoveCategory moveCategory
+    }
+
+   enum MoveCategory {
+        POSITION, GUARD_PASSING, TAKE_DOWNS, SUBMISSIONS, SWEEPS, ESCAPES_AND_DEFENSES
+    }
+}
+
+User "1" -- "1" Belt
+User "1" -- "*" TrainingSession
+TrainingSession "*" -- "*" Technique
+Technique "1" -- "1" MoveCategory
+
 @enduml

@@ -1,4 +1,4 @@
-package br.com.gustavoantunes.jiujitsudiary.domain.model;
+package br.com.gustavoantunes.jiujitsudiary.domain.model.technique;
 
 import java.util.UUID;
 
@@ -6,13 +6,13 @@ public class Technique {
     private final UUID id;
     private final String name;
     private final String description;
-    private final String position;
+    private final MoveCategory moveCategory;
 
-    public Technique(UUID id, String name, String description, String position) {
+    public Technique(UUID id, String name, String description, MoveCategory moveCategory) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.position = position;
+        this.moveCategory = moveCategory;
     }
 
     public UUID getId() {
@@ -27,7 +27,7 @@ public class Technique {
         return description;
     }
 
-    public String getPosition() {
-        return position;
+    public MoveCategory getMoveCategory() {
+        return moveCategory;
     }
 }
