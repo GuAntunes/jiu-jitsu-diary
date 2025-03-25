@@ -1,4 +1,4 @@
-package br.com.gustavoantunes.jiujitsudiary.domain;
+package br.com.gustavoantunes.jiujitsudiary.domain.model;
 
 import java.util.UUID;
 

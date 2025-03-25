@@ -1,8 +1,11 @@
 # 📌 Jiu-Jitsu Training & Diet Tracker
 
 ## 📖 About the Project
-This application is designed to help users track and organize their jiu-jitsu training and diet.  
+This application is designed to help users track and organize their jiu-jitsu training.
 The system allows each user to monitor physical progress, set goals, and gain insights to improve performance.
+
+## 📖 Documentação
+Complete documentation is in the folder [`docs/`](docs/).
 
 ## 🚀 Features
 
@@ -77,6 +80,27 @@ The system allows each user to monitor physical progress, set goals, and gain in
 - **Decoupling**: The domain does not depend on external databases, frameworks, or libraries.
 - **Testability**: Business logic can be easily tested in isolation without dependencies on infrastructure.
 - **Flexibility**: External technologies (such as databases or frameworks) can be swapped without impacting the core business logic.
+
+# Packages Structure
+```
+├── application   // Lógica de negócio (casos de uso)
+│   ├── port
+│   │   ├── in    // Interfaces para entrada (casos de uso)
+│   │   ├── out   // Interfaces para saída (repositórios, gateways)
+│   ├── service   // Implementação dos casos de uso
+│
+├── domain        // Entidades e regras de negócio puras
+│   ├── model     // Modelos de domínio
+│   ├── event     // Eventos de domínio (opcional)
+│
+├── infrastructure // Adapters (banco de dados, APIs externas, frameworks)
+│   ├── repository // Implementação das portas de saída
+│   ├── controller // Controladores (caso use REST)
+│   ├── config     // Configuração de Beans (caso use Spring)
+│   ├── client     // Comunicação com serviços externos
+│
+└── main          // Inicialização da aplicação
+```
 
 ### **Run Locally** *TODO*
 ```bash
