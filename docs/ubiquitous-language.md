@@ -39,22 +39,7 @@ A practitioner of BJJ who uses the system to track their progress and training s
 ### **Teacher**
 An instructor who may oversee multiple athletes and help guide their progress.
 
-## Move Categories
-The system categorizes techniques into the following groups:
-- `Position`
-- `Guard Passing`
-- `Take Downs and Throws`
-- `Submissions`
-- `Sweeps`
-- `Escapes and Defenses`
-
-This document should evolve as the domain model grows to ensure alignment between developers and domain experts.
-
-
-
-
-
-### Categories of Jiu-Jitsu Movements
+### Move Categories
 The categorization of Jiu-Jitsu movements within the ubiquitous language can be defined as:
 
 - **Positions**: Represent the base and control of the fighter (e.g., Guard, Mount, Back Control).

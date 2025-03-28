@@ -1,0 +1,71 @@
+@startuml
+title Arquitetura de Componentes - Aplicação de Jiu-Jitsu
+
+package "Usuário" {
+    actor Usuario
+}
+
+package "Frontend" {
+    component "Aplicativo Mobile (Flutter/React Native)" as Mobile
+    component "Web App (React.js / Next.js)" as Web
+}
+
+package "Gateway & Segurança" {
+    component "API Gateway (Kong/Nginx)" as Gateway
+    component "Autenticação (Spring Security + JWT/OAuth2)" as Auth
+}
+
+package "Backend" {
+    component "API REST (Spring Boot)" as API
+    component "Gestão de Treinos" as TreinoService
+    component "Gestão de Usuários" as UserService
+    component "Notificações" as NotificationService
+}
+
+package "Banco de Dados" {
+    database "PostgreSQL (AWS RDS)" as DB
+    database "MongoDB (Armazenamento de Logs)" as MongoDB
+    component "Cache (Redis)" as Redis
+}
+
+package "Armazenamento & Mensageria" {
+    component "AWS S3 (Imagens/Vídeos)" as S3
+    component "Fila de Mensagens (Kafka/RabbitMQ)" as MQ
+}
+
+package "Infraestrutura & DevOps" {
+    component "Orquestração (Docker + Kubernetes)" as K8s
+    component "Monitoramento (Prometheus + Grafana)" as Monitoring
+    component "Logging (ELK Stack)" as Logs
+    component "CI/CD (Jenkins + GitHub Actions)" as CI_CD
+    component "Infraestrutura como Código (Terraform/Ansible)" as Terraform
+}
+
+Usuario --> Mobile : "Interage com"
+Usuario --> Web : "Interage com"
+
+Mobile --> Gateway : "Envia requisições"
+Web --> Gateway : "Envia requisições"
+
+Gateway --> Auth : "Valida autenticação"
+Gateway --> API : "Encaminha requisição"
+
+API --> TreinoService : "Gerencia treinos"
+API --> UserService : "Gerencia usuários"
+API --> NotificationService : "Notificações"
+
+TreinoService --> DB : "Lê e escreve dados"
+UserService --> DB : "Lê e escreve dados"
+API --> Redis : "Consulta cache"
+
+NotificationService --> MQ : "Envia eventos"
+API --> S3 : "Armazena arquivos"
+
+CI_CD --> K8s : "Desploy no servidor (AWS EC2)"
+K8s --> API : "Executa instâncias"
+
+API --> Monitoring : "Envia métricas"
+API --> Logs : "Registra logs"
+Logs --> MongoDB : "Armazena logs centralizados"
+
+@enduml
