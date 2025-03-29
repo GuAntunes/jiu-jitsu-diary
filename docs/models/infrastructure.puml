@@ -39,6 +39,7 @@ package "Infraestrutura & DevOps" {
     component "Logging (ELK Stack)" as Logs
     component "CI/CD (Jenkins + GitHub Actions)" as CI_CD
     component "Infraestrutura como Código (Terraform/Ansible)" as Terraform
+    component "Feature Toggles (LaunchDarkly)" as FeatureToggles
 }
 
 Usuario --> Mobile : "Interage com"
@@ -65,6 +66,7 @@ CI_CD --> K8s : "Desploy no servidor (AWS EC2)"
 K8s --> API : "Executa instâncias"
 
 API --> Monitoring : "Envia métricas"
+API --> FeatureToggles : "Gerencia recursos"
 API --> Logs : "Registra logs"
 Logs --> MongoDB : "Armazena logs centralizados"
 
